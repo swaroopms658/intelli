@@ -58,6 +58,14 @@ def calculate_adx(df):
     plus_dm_series = np.where((up_move > down_move) & (up_move > 0), up_move, 0.0)
     minus_dm_series = np.where((down_move > up_move) & (down_move > 0), down_move, 0.0)
     
+    # Force first row used for diffs to NaN to match Excel (which usually starts calc at row 2)
+    # Excel Index 0 is just raw data, Index 1 has first TR? 
+    # Wait, check verification again. Excel Row 2 (Index 0) TR is NaN.
+    # Excel Row 3 (Index 1) TR is valid.
+    tr_series.iloc[0] = np.nan
+    plus_dm_series[0] = np.nan
+    minus_dm_series[0] = np.nan
+    
     # Convert to standard lists/arrays for iterative smoothing (Wilder's is recursive)
     # Or implement recursive loop carefully. 
     # Since we need exact match, loop is safer for the "Prev" dependence.
