@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+db.sqlite3
+.DS_Store
+venv/
+env/
+.idea/
+.vscode/
+assignment1-data.csv
+Assignment1-data.csv
+assignment1-Solution.xlsx
+Assignment1-Solution.xlsx
